@@ -1,2 +1,5 @@
 # music-meta-unicode-remover
 Music metadata Unicode remover
+
+# Situation
+When attempting to sync music to my iPod using (gtkpod)[https://github.com/trinitonesounds/gtkpod] it would randomly crash and create a corrupt database which would then immediately crash the application. After individually testing many tracks to find the cause of the issue (which I originaly thoght was due to the quantity of tracks) I found it crashed when importing `RÜFÜS DU SOL - On My Knees (Cassian Remix)`. This track filename has the special character `Ü` which I concluded must be the cause of the issue. However, even after renaming the track gtkpod still wouldn't save the db. I then looked at the track metadata using (Tagger)[https://flathub.org/apps/org.nickvision.tagger] and saw that the special character `Ü` had also been used in the Artist entry in the metadata. After replacing this with `U` it then transfered sucsessfuly. I then wrote this script to automatically find and replace all special characters in the file names and metadata of my music.
