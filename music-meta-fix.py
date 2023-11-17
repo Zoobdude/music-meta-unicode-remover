@@ -1,11 +1,24 @@
+import sys
 from unidecode import unidecode
 import music_tag
 import os
 
-working_dir = "./" #will be set via command line argument
+
+keys_to_convert = ['tracktitle', 'artist', 'album', 'albumartist', 'composer']
+
+if len(sys.argv) == 2:
+    working_dir = sys.argv[1]
+
+elif len(sys.argv) == 1:
+    print("Defaulting to current directory")
+    working_dir = "./"
+
+else:
+    print("Too many arguments. Please only provide one argument: the directory to work in.")
+    exit()
 
 list_of_files = os.listdir(working_dir)
-keys_to_convert = ['tracktitle', 'artist', 'album', 'albumartist', 'composer']
+
 
 for i, file in enumerate(list_of_files):
     file_no_unicode = unidecode(file)
